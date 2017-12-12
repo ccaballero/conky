@@ -25,7 +25,7 @@ conky.config = {
     out_to_stderr = false,
     uppercase = false,
     use_spacer = 'none',
-    lua_load = '~/.conky/widgets.lua',
+    lua_load = '~/.conky/widgets.main.lua',
     lua_draw_hook_pre = 'widgets'
 }
 

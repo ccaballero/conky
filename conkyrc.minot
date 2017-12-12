@@ -1,0 +1,277 @@
+conky.config = {
+    background = true,
+    update_interval = 1.0,
+    double_buffer = true,
+    use_xft = true,
+    xftalpha = 0.8,
+    font = 'Inconsolata Regular:size=6',
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_transparent = true,
+    own_window_type = 'override',
+    gap_x = 20,
+    gap_y = 10,
+    alignment = 'top_left',
+    minimum_width = 740,
+    maximum_width = 740,
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    default_color = '1A1A1A',
+    cpu_avg_samples = 2,
+    net_avg_samples = 2,
+    out_to_console = false,
+    out_to_stderr = false,
+    uppercase = false,
+    use_spacer = 'none',
+    lua_load = '~/.conky/widgets.minot.lua',
+    lua_draw_hook_pre = 'widgets'
+}
+
+conky.text = [[
+${image /home/jacobian/.conky/icons/cpu.png -p 177,176 -s 32x32}
+${image /home/jacobian/.conky/icons/mem.png -p 180,275 -s 26x26}
+${image /home/jacobian/.conky/icons/bat.png -p 185,370 -s 17x26}
+${image /home/jacobian/.conky/icons/fan.png -p 178,465 -s 30x30}
+
+${voffset -64}
+${font LivingTogether:size=44}$nodename ${exec whoami}${font}
+
+${voffset 10}
+${font GeosansLight:size=14}kernel: $sysname $kernel${font}
+${voffset -5}
+${font GeosansLight:size=14}uptime: $uptime${font}
+
+${voffset 15}
+${font GeosansLight:size=14}CPU:${font}
+${alignr 620}${voffset -20}${font GeosansLight:size=14}${cpu cpu0}%${font}
+
+cpu0:
+${alignr 680}${voffset -10}${cpu cpu1}%
+${alignr 620}${voffset -10}${freq_g 1}GHz
+cpu1:
+${alignr 680}${voffset -10}${cpu cpu2}%
+${alignr 620}${voffset -10}${freq_g 2}GHz
+cpu2:
+${alignr 680}${voffset -10}${cpu cpu3}%
+${alignr 620}${voffset -10}${freq_g 3}GHz
+cpu3:
+${alignr 680}${voffset -10}${cpu cpu4}%
+${alignr 620}${voffset -10}${freq_g 4}GHz
+
+${voffset 15}
+${font GeosansLight:size=14}MEM:${font}
+${alignr 620}${voffset -20}${font GeosansLight:size=14}$memperc%${font}
+
+used:
+${alignr 620}${voffset -10}$mem
+total:
+${alignr 620}${voffset -10}$memmax
+swap:
+${alignr 620}${voffset -10}$swap
+total:
+${alignr 620}${voffset -10}$swapmax
+
+${voffset 15}
+${font GeosansLight:size=14}BATTERY:${font}
+${alignr 620}${voffset -20}${font GeosansLight:size=14}$battery_percent%${font}
+
+adapter:
+${alignr 620}${voffset -10}${exec acpi -a | awk '{print $3}'}
+time:
+${alignr 620}${voffset -10}$battery_time
+
+${voffset 15}
+${font GeosansLight:size=14}SENSORS:${font}
+
+core 0:
+${alignr 620}${voffset -10}${exec sensors coretemp-isa-0000 | grep 'Core 0' | awk '{print $3}'}
+core 1:
+${alignr 620}${voffset -10}${exec sensors coretemp-isa-0000 | grep 'Core 1' | awk '{print $3}'}
+i8k temp:
+${alignr 620}${voffset -10}${i8k_cpu_temp} °C
+i8k status:
+${alignr 620}${voffset -10}${i8k_right_fan_status}
+i8k fan:
+${alignr 620}${voffset -10}${i8k_right_fan_rpm} rpm
+
+${voffset 15}
+${font GeosansLight:size=14}PROCESSES:${font}
+${alignr 560}${voffset -20}${font GeosansLight:size=14}$processes${font}
+
+${alignr 710}${top pid 1}
+${alignr 675}${voffset -10}${top cpu 1}
+${alignr 640}${voffset -10}${top mem 1}
+${offset 120}${voffset -10}${top name 1}
+${alignr 710}${top pid 2}
+${alignr 675}${voffset -10}${top cpu 2}
+${alignr 640}${voffset -10}${top mem 2}
+${offset 120}${voffset -10}${top name 2}
+${alignr 710}${top pid 3}
+${alignr 675}${voffset -10}${top cpu 3}
+${alignr 640}${voffset -10}${top mem 3}
+${offset 120}${voffset -10}${top name 3}
+${alignr 710}${top pid 4}
+${alignr 675}${voffset -10}${top cpu 4}
+${alignr 640}${voffset -10}${top mem 4}
+${offset 120}${voffset -10}${top name 4}
+${alignr 710}${top pid 5}
+${alignr 675}${voffset -10}${top cpu 5}
+${alignr 640}${voffset -10}${top mem 5}
+${offset 120}${voffset -10}${top name 5}
+${alignr 710}${top pid 6}
+${alignr 675}${voffset -10}${top cpu 6}
+${alignr 640}${voffset -10}${top mem 6}
+${offset 120}${voffset -10}${top name 6}
+${alignr 710}${top pid 7}
+${alignr 675}${voffset -10}${top cpu 7}
+${alignr 640}${voffset -10}${top mem 7}
+${offset 120}${voffset -10}${top name 7}
+
+${alignr 710}${top_mem pid 1}
+${alignr 675}${voffset -10}${top_mem cpu 1}
+${alignr 640}${voffset -10}${top_mem mem 1}
+${offset 120}${voffset -10}${top_mem name 1}
+${alignr 710}${top_mem pid 2}
+${alignr 675}${voffset -10}${top_mem cpu 2}
+${alignr 640}${voffset -10}${top_mem mem 2}
+${offset 120}${voffset -10}${top_mem name 2}
+${alignr 710}${top_mem pid 3}
+${alignr 675}${voffset -10}${top_mem cpu 3}
+${alignr 640}${voffset -10}${top_mem mem 3}
+${offset 120}${voffset -10}${top_mem name 3}
+${alignr 710}${top_mem pid 4}
+${alignr 675}${voffset -10}${top_mem cpu 4}
+${alignr 640}${voffset -10}${top_mem mem 4}
+${offset 120}${voffset -10}${top_mem name 4}
+${alignr 710}${top_mem pid 5}
+${alignr 675}${voffset -10}${top_mem cpu 5}
+${alignr 640}${voffset -10}${top_mem mem 5}
+${offset 120}${voffset -10}${top_mem name 5}
+${alignr 710}${top_mem pid 6}
+${alignr 675}${voffset -10}${top_mem cpu 6}
+${alignr 640}${voffset -10}${top_mem mem 6}
+${offset 120}${voffset -10}${top_mem name 6}
+${alignr 710}${top_mem pid 7}
+${alignr 675}${voffset -10}${top_mem cpu 7}
+${alignr 640}${voffset -10}${top_mem mem 7}
+${offset 120}${voffset -10}${top_mem name 7}
+
+${voffset -641}
+${offset 260}${font GeosansLight:size=14}PARTITIONS: ${font}
+
+${offset 260}/
+${alignr 350}${voffset -10}${fs_size /}
+${alignr 300}${voffset -10}${fs_used /}
+${alignr 250}${voffset -10}${fs_free /}
+${alignr 225}${voffset -10}${fs_used_perc /}%
+${offset 260}/boot
+${alignr 350}${voffset -10}${fs_size /boot}
+${alignr 300}${voffset -10}${fs_used /boot}
+${alignr 250}${voffset -10}${fs_free /boot}
+${alignr 225}${voffset -10}${fs_used_perc /boot}%
+${offset 260}/home
+${alignr 350}${voffset -10}${fs_size /home}
+${alignr 300}${voffset -10}${fs_used /home}
+${alignr 250}${voffset -10}${fs_free /home}
+${alignr 225}${voffset -10}${fs_used_perc /home}%
+${offset 260}/usr
+${alignr 350}${voffset -10}${fs_size /usr}
+${alignr 300}${voffset -10}${fs_used /usr}
+${alignr 250}${voffset -10}${fs_free /usr}
+${alignr 225}${voffset -10}${fs_used_perc /usr}%
+${offset 260}/var
+${alignr 350}${voffset -10}${fs_size /var}
+${alignr 300}${voffset -10}${fs_used /var}
+${alignr 250}${voffset -10}${fs_free /var}
+${alignr 225}${voffset -10}${fs_used_perc /var}%
+${offset 260}/opt
+${alignr 350}${voffset -10}${fs_size /opt}
+${alignr 300}${voffset -10}${fs_used /opt}
+${alignr 250}${voffset -10}${fs_free /opt}
+${alignr 225}${voffset -10}${fs_used_perc /opt}%
+${offset 260}/tmp
+${alignr 350}${voffset -10}${fs_size /tmp}
+${alignr 300}${voffset -10}${fs_used /tmp}
+${alignr 250}${voffset -10}${fs_free /tmp}
+${alignr 225}${voffset -10}${fs_used_perc /tmp}%
+${offset 260}/usr/portage
+${alignr 350}${voffset -10}${fs_size /usr/portage}
+${alignr 300}${voffset -10}${fs_used /usr/portage}
+${alignr 250}${voffset -10}${fs_free /usr/portage}
+${alignr 225}${voffset -10}${fs_used_perc /usr/portage}%
+${offset 260}/media/music
+${alignr 350}${voffset -10}${fs_size /media/music}
+${alignr 300}${voffset -10}${fs_used /media/music}
+${alignr 250}${voffset -10}${fs_free /media/music}
+${alignr 225}${voffset -10}${fs_used_perc /media/music}%
+${offset 260}/media/books
+${alignr 350}${voffset -10}${fs_size /media/books}
+${alignr 300}${voffset -10}${fs_used /media/books}
+${alignr 250}${voffset -10}${fs_free /media/books}
+${alignr 225}${voffset -10}${fs_used_perc /media/books}%
+${offset 260}/media/resources
+${alignr 350}${voffset -10}${fs_size /media/resources}
+${alignr 300}${voffset -10}${fs_used /media/resources}
+${alignr 250}${voffset -10}${fs_free /media/resources}
+${alignr 225}${voffset -10}${fs_used_perc /media/resources}%
+
+${voffset 15}
+${offset 260}${font GeosansLight:size=14}I/O: ${font}
+
+${offset 260}read: ${diskio_read /dev/sda}
+${offset 330}${voffset -10}write: ${diskio_write /dev/sda}
+${offset 260}${diskiograph_read sda 32,260}
+${offset 260}${voffset -10}${diskiograph_write sda 32,260}
+
+${voffset 15}
+${offset 260}${font GeosansLight:size=14}NETWORK: ${font}
+
+${if_match "$addr" == "No Address"}
+${voffset -20}
+${offset 260}${font GeosansLight:bold:size=12}eth1:${font}
+${alignr 245}${voffset -16}${font GeosansLight:size=12}${addr eth1}${font}
+
+${offset 260}essid:
+${alignr 225}${voffset -10}${wireless_essid eth1}
+${offset 260}gw:
+${alignr 225}${voffset -10}${gw_ip}
+${offset 260}dns:
+${alignr 225}${voffset -10}${nameserver 0}
+
+${offset 260}down: ${downspeed eth1}
+${offset 330}${voffset -10}up: ${upspeed eth1}
+${offset 260}${downspeedgraph eth1 32,260}
+${offset 260}${voffset -10}${upspeedgraph eth1 32,260}
+${else}
+${voffset -20}
+${offset 260}${font GeosansLight:bold:size=12}eth0:${font}
+${alignr 245}${voffset -16}${font GeosansLight:size=12}${addr eth0}${font}
+
+${offset 260}gw:
+${alignr 225}${voffset -10}${gw_ip}
+${offset 260}dns:
+${alignr 225}${voffset -10}${nameserver 0}
+
+${offset 260}down: ${downspeed eth0}
+${offset 330}${voffset -10}up: ${upspeed eth0}
+${offset 260}${downspeedgraph eth0 32,260}
+${offset 260}${voffset -10}${upspeedgraph eth0 32,260}
+${endif}
+
+${offset 260}${font GeosansLight:size=14}MUSIC: ${font}
+
+${voffset 8}${offset 335}${font Roboto Condensed:style=Light:size=16}$mpd_title${font}
+${voffset 3}${offset 335}${font Roboto Condensed:style=Light:size=10}$mpd_album${font}
+${voffset 1}${offset 335}${font Roboto Condensed:style=Light:size=10}$mpd_artist${font}
+${if_mpd_playing}
+${if_match "$mpd_status" == "Playing"}
+${image /home/jacobian/.conky/icons/play.png -p 266,679 -s 48x48}
+${endif}${if_match "$mpd_status" == "Paused"}
+${image /home/jacobian/.conky/icons/pause.png -p 266,679 -s 48x48}
+${endif}${else}
+${image /home/jacobian/.conky/icons/stop.png -p 266,679 -s 48x48}
+${endif}
+]]
+
