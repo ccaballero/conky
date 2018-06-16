@@ -92,12 +92,12 @@ ${alignr 810}${voffset -12}$swapmax
 
 ${voffset 12}
 ${offset 70}${font GeosansLight:size=14}BATTERY:${font}
-${alignr 810}${voffset -20}${font GeosansLight:size=14}$battery_percent%${font}
+${alignr 810}${voffset -20}${font GeosansLight:size=14}${battery_percent BAT1}%${font}
 
 ${offset 70}adapter:
 ${alignr 810}${voffset -12}${exec acpi -a | awk '{print $3}'}
 ${offset 70}time:
-${alignr 810}${voffset -12}$battery_time
+${alignr 810}${voffset -12}${battery_time BAT1}
 
 ${voffset 12}
 ${offset 70}${font GeosansLight:size=14}SENSORS:${font}

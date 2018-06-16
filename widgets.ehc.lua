@@ -445,7 +445,7 @@ function conky_widgets()
     ring('memperc',  '', 100, color, 0.2, color, 0.8, 276, 355, r-(15*7), 5,  0, 360)
     ring('swapperc', '', 100, color, 0.2, color, 0.8, 276, 355, r-(14*7), 5, 90, 270)
 
-    ring('battery_percent', '', 100, color, 0.2, color, 0.8, 276, 465, r-(14*7), 5, 0, 360)
+    ring('battery_percent BAT1', '', 100, color, 0.2, color, 0.8, 276, 465, r-(14*7), 5, 0, 360)
 
     ring('fs_used_perc', '/',                100, color, 0.2, color, 0.8, 694, 405, r-(15*7), 5,   0, 120)
     ring('fs_used_perc', '/boot',            100, color, 0.2, color, 0.8, 694, 405, r-(14*7), 5,  60, 180)
@@ -460,7 +460,7 @@ function conky_widgets()
 
     if conky_parse('${mpd_status}') == 'Playing'
     then
-        draw_cover(694, 740, 60, 60, 4, color)
+        draw_cover(390, 1005, 60, 60, 4, color)
     end
 
     ring('mpd_percent', '', 100, color, 0.2, color, 0.8, 390, 924, r-(14*7), 5, 0, 360)
