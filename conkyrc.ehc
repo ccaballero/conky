@@ -6,7 +6,7 @@ conky.config = {
     double_buffer = true,
     use_xft = true,
     xftalpha = 0.8,
-    font = 'Inconsolata Regular:size=7',
+    font = 'Inconsolata Regular:size=11',
     own_window = true,
     own_window_class = 'Conky',
     own_window_transparent = true,
@@ -27,14 +27,15 @@ conky.config = {
     out_to_stderr = false,
     uppercase = false,
     use_spacer = 'none',
-    lua_load = '~/.conky/widgets.main.lua',
+    lua_load = '~/.conky/widgets.ehc.lua',
     lua_draw_hook_pre = 'widgets'
 }
 
 conky.text = [[
 ${image /home/jacobian/.conky/icons/cpu.png -p 255,220 -s 32x32}
-${image /home/jacobian/.conky/icons/mem.png -p 258,388 -s 26x26}
-${image /home/jacobian/.conky/icons/fan.png -p 256,501 -s 30x30}
+${image /home/jacobian/.conky/icons/mem.png -p 258,338 -s 26x26}
+${image /home/jacobian/.conky/icons/bat.png -p 262,447 -s 17x26}
+${image /home/jacobian/.conky/icons/fan.png -p 256,542 -s 30x30}
 
 ${voffset -52}
 ${offset 30}${font LivingTogether:size=44}$nodename!${exec whoami}${font}
@@ -88,6 +89,15 @@ ${offset 70}swap:
 ${alignr 810}${voffset -12}$swap
 ${offset 70}total:
 ${alignr 810}${voffset -12}$swapmax
+
+${voffset 12}
+${offset 70}${font GeosansLight:size=14}BATTERY:${font}
+${alignr 810}${voffset -20}${font GeosansLight:size=14}$battery_percent%${font}
+
+${offset 70}adapter:
+${alignr 810}${voffset -12}${exec acpi -a | awk '{print $3}'}
+${offset 70}time:
+${alignr 810}${voffset -12}$battery_time
 
 ${voffset 12}
 ${offset 70}${font GeosansLight:size=14}SENSORS:${font}
@@ -232,10 +242,10 @@ ${voffset 12}
 ${offset 350}${font GeosansLight:size=14}NETWORK: ${font}
 ${voffset -2}
 ${offset 350}${font GeosansLight:bold:size=12}eth0:${font}
-${alignr 370}${voffset -20}${font GeosansLight:size=12}${addr eth0}${font}
+${alignr 370}${voffset -14}${font GeosansLight:size=12}${addr eth0}${font}
 ${voffset -12}
 ${offset 350}${font GeosansLight:bold:size=12}wlan0:${font}
-${alignr 370}${voffset -20}${font GeosansLight:size=12}${addr wlan0}${font}
+${alignr 370}${voffset -14}${font GeosansLight:size=12}${addr wlan0}${font}
 ${voffset -10}
 ${offset 350}${font GeosansLight:bold:size=10}gw:${font}
 ${alignr 370}${voffset -14}${font GeosansLight:size=10}${gw_ip}${font}
@@ -257,11 +267,11 @@ ${voffset 3}${offset 434}${font GeosansLight:size=11}$mpd_album${font}
 ${voffset 1}${offset 434}${font GeosansLight:size=11}$mpd_artist${font}
 ${if_mpd_playing}
 ${if_match "$mpd_status" == "Playing"}
-${image /home/jacobian/.conky/icons/play.png -p 361,935 -s 48x48}
+${image /home/jacobian/.conky/icons/play.png -p 361,895 -s 48x48}
 ${endif}${if_match "$mpd_status" == "Paused"}
-${image /home/jacobian/.conky/icons/pause.png -p 361,935 -s 48x48}
+${image /home/jacobian/.conky/icons/pause.png -p 361,895 -s 48x48}
 ${endif}${else}
-${image /home/jacobian/.conky/icons/stop.png -p 361,935 -s 48x48}
+${image /home/jacobian/.conky/icons/stop.png -p 361,895 -s 48x48}
 ${endif}
 ]]
 
