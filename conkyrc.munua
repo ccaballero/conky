@@ -27,7 +27,7 @@ conky.config = {
     out_to_stderr = false,
     uppercase = false,
     use_spacer = 'none',
-    lua_load = '~/.conky/widgets.ehc.lua',
+    lua_load = '~/.conky/widgets.munua.lua',
     lua_draw_hook_pre = 'widgets'
 }
 
@@ -35,7 +35,7 @@ conky.text = [[
 ${image /home/jacobian/.conky/icons/cpu.png -p 255,220 -s 32x32}
 ${image /home/jacobian/.conky/icons/mem.png -p 258,338 -s 26x26}
 ${image /home/jacobian/.conky/icons/bat.png -p 262,447 -s 17x26}
-${image /home/jacobian/.conky/icons/fan.png -p 256,542 -s 30x30}
+${image /home/jacobian/.conky/icons/fan.png -p 256,552 -s 30x30}
 
 ${voffset -52}
 ${offset 30}${font LivingTogether:size=44}$nodename!${exec whoami}${font}
@@ -50,7 +50,7 @@ ${offset 460}${font GeosansLight:size=21}${time %A}${font}
 
 ${voffset -80}
 ${offset 70}${font GeosansLight:size=14}CPU:${font}
-${voffset -20}${alignr 810}${font GeosansLight:size=14}${cpu cpu0}%${font}
+${voffset -15}${alignr 810}${font GeosansLight:size=14}${cpu cpu0}%${font}
 ${voffset -2}
 ${offset 70}cpu0:
 ${alignr 860}${voffset -12}${cpu cpu1}%
@@ -79,7 +79,7 @@ ${alignr 810}${voffset -12}${freq_g 8}GHz
 
 ${voffset 12}
 ${offset 70}${font GeosansLight:size=14}MEM:${font}
-${voffset -20}${alignr 810}${font GeosansLight:size=14}$memperc%${font}
+${voffset -15}${alignr 810}${font GeosansLight:size=14}$memperc%${font}
 ${voffset -2}
 ${offset 70}used:
 ${alignr 810}${voffset -12}$mem
@@ -92,7 +92,7 @@ ${alignr 810}${voffset -12}$swapmax
 
 ${voffset 12}
 ${offset 70}${font GeosansLight:size=14}BATTERY:${font}
-${alignr 810}${voffset -20}${font GeosansLight:size=14}${battery_percent BAT1}%${font}
+${alignr 810}${voffset -15}${font GeosansLight:size=14}${battery_percent BAT1}%${font}
 
 ${offset 70}adapter:
 ${alignr 810}${voffset -12}${exec acpi -a | awk '{print $3}'}
@@ -115,7 +115,7 @@ ${voffset 0}
 
 ${voffset 12}
 ${offset 70}${font GeosansLight:size=14}PROCESSES: ${font}
-${voffset -20}${alignr 716}${font GeosansLight:size=14}$processes${font}
+${voffset -15}${alignr 716}${font GeosansLight:size=14}$processes${font}
 ${voffset -2}
 ${alignr 900}${top pid 1}
 ${alignr 866}${voffset -12}${top cpu 1}
@@ -183,7 +183,7 @@ ${voffset -12}${offset 220}write: ${diskio_write /dev/sda}
 ${offset 70}${diskiograph_read sda 32,220}
 ${voffset -12}${offset 70}${diskiograph_write sda 32,220}
 
-${voffset -670}
+${voffset -732}
 ${voffset 12}
 ${offset 350}${font GeosansLight:size=14}PARTITIONS: ${font}
 ${voffset -2}
@@ -222,21 +222,16 @@ ${alignr 520}${voffset -12}${fs_size /tmp}
 ${alignr 470}${voffset -12}${fs_used /tmp}
 ${alignr 420}${voffset -12}${fs_free /tmp}
 ${alignr 370}${voffset -12}${fs_used_perc /tmp}%
-${offset 350}/usr/portage
-${alignr 520}${voffset -12}${fs_size /usr/portage}
-${alignr 470}${voffset -12}${fs_used /usr/portage}
-${alignr 420}${voffset -12}${fs_free /usr/portage}
-${alignr 370}${voffset -12}${fs_used_perc /usr/portage}%
-${offset 350}/media/music
-${alignr 520}${voffset -12}${fs_size /media/music}
-${alignr 470}${voffset -12}${fs_used /media/music}
-${alignr 420}${voffset -12}${fs_free /media/music}
-${alignr 370}${voffset -12}${fs_used_perc /media/music}%
-${offset 350}/media/resources
-${alignr 520}${voffset -12}${fs_size /media/resources}
-${alignr 470}${voffset -12}${fs_used /media/resources}
-${alignr 420}${voffset -12}${fs_free /media/resources}
-${alignr 370}${voffset -12}${fs_used_perc /media/resources}%
+${offset 350}/docker
+${alignr 520}${voffset -12}${fs_size /docker}
+${alignr 470}${voffset -12}${fs_used /docker}
+${alignr 420}${voffset -12}${fs_free /docker}
+${alignr 370}${voffset -12}${fs_used_perc /docker}%
+${offset 350}/media
+${alignr 520}${voffset -12}${fs_size /media}
+${alignr 470}${voffset -12}${fs_used /media}
+${alignr 420}${voffset -12}${fs_free /media}
+${alignr 370}${voffset -12}${fs_used_perc /media}%
 
 ${voffset 12}
 ${offset 350}${font GeosansLight:size=14}NETWORK: ${font}
@@ -265,13 +260,14 @@ ${voffset -6}
 ${offset 430}${font GeosansLight:bold:size=18}$mpd_title${font}
 ${voffset 3}${offset 434}${font GeosansLight:size=11}$mpd_album${font}
 ${voffset 1}${offset 434}${font GeosansLight:size=11}$mpd_artist${font}
+
 ${if_mpd_playing}
 ${if_match "$mpd_status" == "Playing"}
-${image /home/jacobian/.conky/icons/play.png -p 361,895 -s 48x48}
+${image /home/jacobian/.conky/icons/play.png -p 361,835 -s 48x48}
 ${endif}${if_match "$mpd_status" == "Paused"}
-${image /home/jacobian/.conky/icons/pause.png -p 361,895 -s 48x48}
+${image /home/jacobian/.conky/icons/pause.png -p 361,835 -s 48x48}
 ${endif}${else}
-${image /home/jacobian/.conky/icons/stop.png -p 361,895 -s 48x48}
+${image /home/jacobian/.conky/icons/stop.png -p 361,835 -s 48x48}
 ${endif}
 ]]
 
