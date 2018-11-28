@@ -409,36 +409,36 @@ function conky_widgets()
     r = 128
     color = 0x1A1A1A
 
-    round_rect(70, 194, 130, 1, 0, color, 0.5)
-    round_rect(70, 351, 130, 1, 0, color, 0.5)
-    round_rect(70, 460, 130, 1, 0, color, 0.5)
-    round_rect(70, 547, 210, 1, 0, color, 0.5)
-    round_rect(70, 680, 210, 1, 0, color, 0.5)
-    round_rect(70, 921, 210, 1, 0, color, 0.5)
+    round_rect(70, 208, 130, 1, 0, color, 0.5)
+    round_rect(70, 370, 130, 1, 0, color, 0.5)
+    round_rect(70, 484, 130, 1, 0, color, 0.5)
+    round_rect(70, 576, 210, 1, 0, color, 0.5)
+    round_rect(70, 714, 210, 1, 0, color, 0.5)
+    round_rect(70, 960, 210, 1, 0, color, 0.5)
 
-    round_rect(350, 350, 280, 1, 0, color, 0.5)
-    round_rect(350, 519, 280, 1, 0, color, 0.5)
-    round_rect(350, 818, 280, 1, 0, color, 0.5)
+    round_rect(350, 370, 280, 1, 0, color, 0.5)
+    round_rect(350, 544, 280, 1, 0, color, 0.5)
+    round_rect(350, 864, 280, 1, 0, color, 0.5)
 
     clock_hands(694, 241, color, 0.8, true, 100)
     ring('time', '%I', 12, color, 0.2, color, 0.8, 694, 241, 36, 5, 0, 360)
     ring('time', '%M', 60, color, 0.2, color, 0.8, 694, 241, 26, 5, 0, 360)
     ring('time', '%S', 60, color, 0.2, color, 0.8, 694, 241, 16, 5, 0, 360)
 
-    ring('cpu', 'cpu0', 100, color, 0.2, color, 0.8, 276, 241, r-(15*7)+3, 5,   0, 360)
-    ring('cpu', 'cpu1', 100, color, 0.2, color, 0.8, 276, 241, r-(14*7)+3, 5,  30,  90)
-    ring('cpu', 'cpu2', 100, color, 0.2, color, 0.8, 276, 241, r-(14*7)+3, 5, 120, 180)
-    ring('cpu', 'cpu3', 100, color, 0.2, color, 0.8, 276, 241, r-(14*7)+3, 5, 210, 270)
-    ring('cpu', 'cpu4', 100, color, 0.2, color, 0.8, 276, 241, r-(14*7)+3, 5, 300, 360)
-    ring('cpu', 'cpu5', 100, color, 0.2, color, 0.8, 276, 241, r-(13*7)+3, 5, 360, 420)
-    ring('cpu', 'cpu6', 100, color, 0.2, color, 0.8, 276, 241, r-(13*7)+3, 5, 450, 510)
-    ring('cpu', 'cpu7', 100, color, 0.2, color, 0.8, 276, 241, r-(13*7)+3, 5, 540, 600)
-    ring('cpu', 'cpu8', 100, color, 0.2, color, 0.8, 276, 241, r-(13*7)+3, 5, 630, 690)
+    ring('cpu', 'cpu0', 100, color, 0.2, color, 0.8, 276, 208, r-(15*7)+3, 5,   0, 360)
+    ring('cpu', 'cpu1', 100, color, 0.2, color, 0.8, 276, 208, r-(14*7)+3, 5,  30,  90)
+    ring('cpu', 'cpu2', 100, color, 0.2, color, 0.8, 276, 208, r-(14*7)+3, 5, 120, 180)
+    ring('cpu', 'cpu3', 100, color, 0.2, color, 0.8, 276, 208, r-(14*7)+3, 5, 210, 270)
+    ring('cpu', 'cpu4', 100, color, 0.2, color, 0.8, 276, 208, r-(14*7)+3, 5, 300, 360)
+    ring('cpu', 'cpu5', 100, color, 0.2, color, 0.8, 276, 208, r-(13*7)+3, 5, 360, 420)
+    ring('cpu', 'cpu6', 100, color, 0.2, color, 0.8, 276, 208, r-(13*7)+3, 5, 450, 510)
+    ring('cpu', 'cpu7', 100, color, 0.2, color, 0.8, 276, 208, r-(13*7)+3, 5, 540, 600)
+    ring('cpu', 'cpu8', 100, color, 0.2, color, 0.8, 276, 208, r-(13*7)+3, 5, 630, 690)
 
-    ring('memperc',  '', 100, color, 0.2, color, 0.8, 276, 355, r-(15*7), 5,  0, 360)
-    ring('swapperc', '', 100, color, 0.2, color, 0.8, 276, 355, r-(14*7), 5, 90, 270)
+    ring('memperc',  '', 100, color, 0.2, color, 0.8, 276, 366, r-(15*7), 5,  0, 360)
+    ring('swapperc', '', 100, color, 0.2, color, 0.8, 276, 366, r-(14*7), 5, 90, 270)
 
-    ring('battery_percent BAT1', '', 100, color, 0.2, color, 0.8, 276, 465, r-(14*7), 5, 0, 360)
+    ring('battery_percent BAT1', '', 100, color, 0.2, color, 0.8, 276, 470, r-(14*7), 5, 0, 360)
 
     ring('fs_used_perc', '/',       100, color, 0.2, color, 0.8, 694, 405, r-(15*7), 5,   0, 120)
     ring('fs_used_perc', '/boot',   100, color, 0.2, color, 0.8, 694, 405, r-(14*7), 5,  60, 180)
@@ -452,10 +452,10 @@ function conky_widgets()
 
     if conky_parse('${mpd_status}') == 'Playing'
     then
-        draw_cover(390, 950, 60, 60, 4, color)
+        draw_cover(390, 990, 60, 60, 4, color)
     end
   
-    ring('mpd_percent', '', 100, color, 0.2, color, 0.8, 390, 864, r-(14*7), 5, 0, 360)
+    ring('mpd_percent', '', 100, color, 0.2, color, 0.8, 390, 912, r-(14*7), 5, 0, 360)
 
     cairo_destroy(cr)
 end
