@@ -1,0 +1,258 @@
+# vim: ft=conkyrc
+
+conky.config = {
+    background = false,
+    update_interval = 2.0,
+    double_buffer = true,
+    use_xft = true,
+    xftalpha = 0.8,
+    font = 'Futura-Medium:size=9',
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_transparent = true,
+    own_window_type = 'override',
+    gap_x = 28,
+    gap_y = 40,
+    alignment = 'top_left',
+    minimum_width = 1080,
+    maximum_width = 1080,
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    default_color = '707070',
+    cpu_avg_samples = 2,
+    net_avg_samples = 2,
+    out_to_console = false,
+    out_to_stderr = false,
+    uppercase = false,
+    use_spacer = 'none',
+    lua_load = '~/.conky/widgets.munua.1.lua',
+    lua_draw_hook_pre = 'widgets'
+}
+
+conky.text = [[
+${font Arista 2.0 Light:size=22}$nodename!${exec whoami}${font}
+kernel: $sysname $kernel
+uptime: $uptime
+
+
+
+
+${image /home/jacobian/.conky/icons/cpu.png -p 220,144 -s 42x42}
+${font Futura:size=12}CPU:${font}
+${voffset -20}${alignr 920}${font Futura:size=12}${cpu cpu0}%${font}
+${voffset 4}cpu0:
+${alignr 992}${voffset -16}${cpu cpu1}%
+${alignr 920}${voffset -16}${freq_g 1}GHz
+${voffset -2}cpu1:
+${alignr 992}${voffset -16}${cpu cpu2}%
+${alignr 920}${voffset -16}${freq_g 2}GHz
+${voffset -2}cpu2:
+${alignr 992}${voffset -16}${cpu cpu3}%
+${alignr 920}${voffset -16}${freq_g 3}GHz
+${voffset -2}cpu3:
+${alignr 992}${voffset -16}${cpu cpu4}%
+${alignr 920}${voffset -16}${freq_g 4}GHz
+${voffset -2}cpu5:
+${alignr 992}${voffset -16}${cpu cpu5}%
+${alignr 920}${voffset -16}${freq_g 5}GHz
+${voffset -2}cpu6:
+${alignr 992}${voffset -16}${cpu cpu6}%
+${alignr 920}${voffset -16}${freq_g 6}GHz
+${voffset -2}cpu7:
+${alignr 992}${voffset -16}${cpu cpu7}%
+${alignr 920}${voffset -16}${freq_g 7}GHz
+${voffset -2}cpu8:
+${alignr 992}${voffset -16}${cpu cpu8}%
+${alignr 920}${voffset -16}${freq_g 8}GHz
+
+${image /home/jacobian/.conky/icons/mem.png -p 220,314 -s 42x42}
+${font Futura:size=12}MEMORY:${font}
+${voffset -20}${alignr 920}${font Futura:size=12}$memperc%${font}
+${voffset 4}used:
+${alignr 920}${voffset -16}$mem
+${voffset -2}total:
+${alignr 920}${voffset -16}$memmax
+${voffset -2}swap:
+${alignr 920}${voffset -16}$swap
+${voffset -2}total:
+${alignr 920}${voffset -16}$swapmax
+
+${image /home/jacobian/.conky/icons/bat.png -p 220,426 -s 42x42}
+${font Futura:size=12}BATTERY:${font}
+${voffset -20}${alignr 920}${font Futura:size=12}${battery_percent BAT1}%${font}
+${voffset 4}adapter:
+${alignr 920}${voffset -16}${exec acpi -a | awk '{print $3}'}
+${voffset -2}time:
+${alignr 920}${voffset -16}${battery_time BAT1}
+
+${image /home/jacobian/.conky/icons/fan.png -p 220,514 -s 42x42}
+${font Futura:size=12}SENSORS:${font}
+${voffset 4}core0:
+${alignr 920}${voffset -16}${exec sensors coretemp-isa-0000 | grep 'Core 0' | awk '{print $3}'}
+${voffset -2}core1:
+${alignr 920}${voffset -16}${exec sensors coretemp-isa-0000 | grep 'Core 1' | awk '{print $3}'}
+${voffset -2}core2:
+${alignr 920}${voffset -16}${exec sensors coretemp-isa-0000 | grep 'Core 2' | awk '{print $3}'}
+${voffset -2}core3:
+${alignr 920}${voffset -16}${exec sensors coretemp-isa-0000 | grep 'Core 3' | awk '{print $3}'}
+
+
+
+${font Futura:size=12}PROCESSES:${font}
+${voffset -20}${alignr 920}${font Futura:size=12}$processes${font}
+${voffset 8}MEMORY USED:
+${alignr 1032}${top pid 1}
+${alignr 976}${voffset -16}${top cpu 1}
+${alignr 920}${voffset -16}${top mem 1}
+${offset 185}${voffset -16}${top name 1}
+${alignr 1032}${top pid 2}
+${alignr 976}${voffset -16}${top cpu 2}
+${alignr 920}${voffset -16}${top mem 2}
+${offset 185}${voffset -16}${top name 2}
+${alignr 1032}${top pid 3}
+${alignr 976}${voffset -16}${top cpu 3}
+${alignr 920}${voffset -16}${top mem 3}
+${offset 185}${voffset -16}${top name 3}
+${alignr 1032}${top pid 4}
+${alignr 976}${voffset -16}${top cpu 4}
+${alignr 920}${voffset -16}${top mem 4}
+${offset 185}${voffset -16}${top name 4}
+${alignr 1032}${top pid 5}
+${alignr 976}${voffset -16}${top cpu 5}
+${alignr 920}${voffset -16}${top mem 5}
+${offset 185}${voffset -16}${top name 5}
+${alignr 1032}${top pid 6}
+${alignr 976}${voffset -16}${top cpu 6}
+${alignr 920}${voffset -16}${top mem 6}
+${offset 185}${voffset -16}${top name 6}
+${alignr 1032}${top pid 7}
+${alignr 976}${voffset -16}${top cpu 7}
+${alignr 920}${voffset -16}${top mem 7}
+${offset 185}${voffset -16}${top name 7}
+${alignr 1032}${top pid 8}
+${alignr 976}${voffset -16}${top cpu 8}
+${alignr 920}${voffset -16}${top mem 8}
+${offset 185}${voffset -16}${top name 8}
+${alignr 1032}${top pid 9}
+${alignr 976}${voffset -16}${top cpu 9}
+${alignr 920}${voffset -16}${top mem 9}
+${offset 185}${voffset -16}${top name 9}
+
+${voffset 8}CPU USED:
+${alignr 1032}${top_mem pid 1}
+${alignr 976}${voffset -16}${top_mem cpu 1}
+${alignr 920}${voffset -16}${top_mem mem 1}
+${offset 185}${voffset -16}${top_mem name 1}
+${alignr 1032}${top_mem pid 2}
+${alignr 976}${voffset -16}${top_mem cpu 2}
+${alignr 920}${voffset -16}${top_mem mem 2}
+${offset 185}${voffset -16}${top_mem name 2}
+${alignr 1032}${top_mem pid 3}
+${alignr 976}${voffset -16}${top_mem cpu 3}
+${alignr 920}${voffset -16}${top_mem mem 3}
+${offset 185}${voffset -16}${top_mem name 3}
+${alignr 1032}${top_mem pid 4}
+${alignr 976}${voffset -16}${top_mem cpu 4}
+${alignr 920}${voffset -16}${top_mem mem 4}
+${offset 185}${voffset -16}${top_mem name 4}
+${alignr 1032}${top_mem pid 5}
+${alignr 976}${voffset -16}${top_mem cpu 5}
+${alignr 920}${voffset -16}${top_mem mem 5}
+${offset 185}${voffset -16}${top_mem name 5}
+${alignr 1032}${top_mem pid 6}
+${alignr 976}${voffset -16}${top_mem cpu 6}
+${alignr 920}${voffset -16}${top_mem mem 6}
+${offset 185}${voffset -16}${top_mem name 6}
+${alignr 1032}${top_mem pid 7}
+${alignr 976}${voffset -16}${top_mem cpu 7}
+${alignr 920}${voffset -16}${top_mem mem 7}
+${offset 185}${voffset -16}${top_mem name 7}
+${alignr 1032}${top_mem pid 8}
+${alignr 976}${voffset -16}${top_mem cpu 8}
+${alignr 920}${voffset -16}${top_mem mem 8}
+${offset 185}${voffset -16}${top_mem name 8}
+${alignr 1032}${top_mem pid 9}
+${alignr 976}${voffset -16}${top_mem cpu 9}
+${alignr 920}${voffset -16}${top_mem mem 9}
+${offset 185}${voffset -16}${top_mem name 9}
+
+${voffset -916}
+
+${alignr 783}${offset 320}${font GeosansLight:size=16}${time %d %B}${font}
+${alignr 783}${offset 320}${time %A}
+
+${voffset 123}
+
+${image /home/jacobian/.conky/icons/hdd.png -p 676,374 -s 42x42}
+${offset 320}${font Futura:size=12}PARTITIONS:${font}
+${voffset 4}${offset 320}/
+${alignr 634}${voffset -16}${fs_size /}
+${alignr 568}${voffset -16}${fs_used /}
+${alignr 508}${voffset -16}${fs_free /}
+${alignr 463}${voffset -16}${fs_used_perc /}%
+${voffset -2}${offset 320}/boot
+${alignr 634}${voffset -16}${fs_size /boot}
+${alignr 568}${voffset -16}${fs_used /boot}
+${alignr 508}${voffset -16}${fs_free /boot}
+${alignr 463}${voffset -16}${fs_used_perc /boot}%
+
+
+
+${offset 320}${font Futura:size=12}I/O:${font}
+${voffset -12}
+${offset 320}read: ${diskio_read /dev/sda}
+${offset 320}${diskiograph_read sda 38,294}
+${offset 320}write: ${diskio_write /dev/sda}
+${offset 320}${diskiograph_write sda 38,294}
+
+
+
+${offset 320}${font Futura:size=12}NETWORK:${font}
+${voffset 4}${offset 320}eth0:
+${alignr 463}${voffset -16}${addr eth0}
+${offset 320}wlan0:
+${alignr 463}${voffset -16}${addr wlan0}
+${offset 320}gw:
+${alignr 463}${voffset -16}${gw_ip}
+
+${voffset 12}${offset 320}down: ${downspeed eth0}
+${voffset -14}${alignr 460}up: ${upspeed eth0}
+${offset 320}${downspeedgraph eth0 38,294}
+${voffset -14}${offset 320}${upspeedgraph eth0 38,294}
+${voffset 12}${offset 320}down: ${downspeed wlan0}
+${voffset -14}${alignr 460}up: ${upspeed wlan0}
+${offset 320}${downspeedgraph wlan0 38,294}
+${voffset -14}${offset 320}${upspeedgraph wlan0 38,294}
+
+${voffset -453}
+
+${offset 777}${font Futura:size=12}MUSIC:${font}
+${voffset -14}
+${offset 870}${font Noto Sans CJK JP:bold:size=13}$mpd_title${font}
+${offset 870}${voffset -2}${font Noto Sans CJK JP:size=8}$mpd_album ($mpd_date)${font}
+${offset 870}${voffset -2}${font Noto Sans CJK JP:size=8}$mpd_artist${font}
+${offset 870}${voffset 4}${alignr 3}${font Futura:size=7}$mpd_elapsed/$mpd_length${font}
+${offset 870}${voffset -4}${mpd_bar 6,206}
+
+${offset 777}${font Futura:size=12}PLAYLIST:${font}
+${voffset -20}${alignr 4}${font Futura:size=12}${execpi 10 ~/.conky/mpd.playlist.current.sh}${font}
+${voffset 4}${font Noto Sans CJK JP:size=8}${execpi 10 ~/.conky/mpd.playlist.list.sh|sed 's/^/${goto 777}/'}${font}
+
+${if_mpd_playing}
+${if_match "$mpd_status" == "Playing"}
+${image /home/jacobian/.conky/icons/play.png -p 676,747 -s 42x42}
+${endif}${if_match "$mpd_status" == "Paused"}
+${image /home/jacobian/.conky/icons/pause.png -p 676,747 -s 42x42}
+${endif}${else}
+${image /home/jacobian/.conky/icons/stop.png -p 676,747 -s 42x42}
+${endif}
+
+${voffset -114}
+
+${offset 777}${font Futura:size=12}AUDIO:${font}
+${voffset 4}${font Noto Sans CJK JP:size=8}${execpi 10 ~/.conky/audio.pulseaudio.sh|sed 's/^/${goto 777}/'}${font}
+
+]]
+

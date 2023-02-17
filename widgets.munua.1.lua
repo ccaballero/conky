@@ -296,6 +296,29 @@ function ring(name, arg, max, bgc, bga, fgc, fga, xc, yc, r, t, sa, ea)
     if update_num > 5 then setup_ring() end
 end
 
+function segment(bgc, bga, xc, yc, r, t, sa, ea)
+    local function rgb_to_r_g_b(colour, alpha)
+        return ((colour / 0x10000) % 0x100) / 255.,
+               ((colour / 0x100) % 0x100) / 255.,
+               (colour % 0x100) / 255., alpha
+    end
+    
+    local function draw_ring()
+        local angle_0 = sa * (2 * math.pi/360) - math.pi/2
+        local angle_f = ea * (2 * math.pi/360) - math.pi/2
+        local pct_arc = (angle_f - angle_0)
+
+        -- Draw background ring
+
+        cairo_arc_negative(cr, xc, yc, r, angle_0, angle_0 - pct_arc)
+        cairo_set_source_rgba(cr, rgb_to_r_g_b(bgc, bga))
+        cairo_set_line_width(cr, t) 
+        cairo_stroke(cr)
+    end
+    
+    draw_ring()
+end
+
 function ring_ccw(name, arg, max, bgc, bga, fgc, fga, xc, yc, r, t, sa, ea)
     local function rgb_to_r_g_b(colour, alpha)
         return ((colour / 0x10000) % 0x100) / 255.,
@@ -366,11 +389,9 @@ function round_rect(x0, y0, w, h, r, colour, alpha)
 end
     
 function draw_cover(xc, yc, width, height, t, color)
-    cover=string.reverse('/media/music/'..conky_parse('${mpd_file}'))
+    cover=string.reverse('/home/jacobian/Música/' .. conky_parse('${mpd_file}'))
     index=string.find(cover,'/')
-    cover=string.reverse(string.sub(cover,index))
-        ..conky_parse('${mpd_artist}')..' - '
-        ..conky_parse('${mpd_album}')..' - frontal.jpg'
+    cover=string.reverse(string.sub(cover,index)) ..  'cover.jpg'
 
     image = imlib_load_image(cover)
     if image == nil then return end
@@ -407,55 +428,78 @@ function conky_widgets()
     cr = cairo_create(cs)
 
     r = 128
-    color = 0x1A1A1A
+    color = 0x707070
 
-    round_rect(70, 208, 130, 1, 0, color, 0.5)
-    round_rect(70, 370, 130, 1, 0, color, 0.5)
-    round_rect(70, 484, 130, 1, 0, color, 0.5)
-    round_rect(70, 576, 210, 1, 0, color, 0.5)
-    round_rect(70, 714, 210, 1, 0, color, 0.5)
-    round_rect(70, 960, 210, 1, 0, color, 0.5)
+    clock_hands(702, 170, color, 0.8, true, 72)
+    segment(color, 0.2, 702, 170, r-(12*7)+3, 5,   0, 360)
+    segment(color, 0.8, 702, 170, r-(13*7)+3, 5,   0,   3)
+    segment(color, 0.8, 702, 170, r-(13*7)+3, 5,  30,  33)
+    segment(color, 0.8, 702, 170, r-(13*7)+3, 5,  60,  63)
+    segment(color, 0.8, 702, 170, r-(13*7)+3, 5,  90,  93)
+    segment(color, 0.8, 702, 170, r-(13*7)+3, 5, 120, 123)
+    segment(color, 0.8, 702, 170, r-(13*7)+3, 5, 150, 153)
+    segment(color, 0.8, 702, 170, r-(13*7)+3, 5, 180, 183)
+    segment(color, 0.8, 702, 170, r-(13*7)+3, 5, 210, 213)
+    segment(color, 0.8, 702, 170, r-(13*7)+3, 5, 240, 243)
+    segment(color, 0.8, 702, 170, r-(13*7)+3, 5, 270, 273)
+    segment(color, 0.8, 702, 170, r-(13*7)+3, 5, 300, 303)
+    segment(color, 0.8, 702, 170, r-(13*7)+3, 5, 330, 333)
 
-    round_rect(350, 370, 280, 1, 0, color, 0.5)
-    round_rect(350, 544, 280, 1, 0, color, 0.5)
-    round_rect(350, 864, 280, 1, 0, color, 0.5)
+    ring('cpu', 'cpu0', 100, color, 0.2, color, 0.8, 246, 170, r-(15*7)+3, 5,   0, 360)
+    ring('cpu', 'cpu1', 100, color, 0.2, color, 0.8, 246, 170, r-(14*7)+3, 5,  30,  90)
+    ring('cpu', 'cpu2', 100, color, 0.2, color, 0.8, 246, 170, r-(14*7)+3, 5, 120, 180)
+    ring('cpu', 'cpu3', 100, color, 0.2, color, 0.8, 246, 170, r-(14*7)+3, 5, 210, 270)
+    ring('cpu', 'cpu4', 100, color, 0.2, color, 0.8, 246, 170, r-(14*7)+3, 5, 300, 360)
+    ring('cpu', 'cpu5', 100, color, 0.2, color, 0.8, 246, 170, r-(13*7)+3, 5, 360, 420)
+    ring('cpu', 'cpu6', 100, color, 0.2, color, 0.8, 246, 170, r-(13*7)+3, 5, 450, 510)
+    ring('cpu', 'cpu7', 100, color, 0.2, color, 0.8, 246, 170, r-(13*7)+3, 5, 540, 600)
+    ring('cpu', 'cpu8', 100, color, 0.2, color, 0.8, 246, 170, r-(13*7)+3, 5, 630, 690)
 
-    clock_hands(694, 241, color, 0.8, true, 100)
-    ring('time', '%I', 12, color, 0.2, color, 0.8, 694, 241, 36, 5, 0, 360)
-    ring('time', '%M', 60, color, 0.2, color, 0.8, 694, 241, 26, 5, 0, 360)
-    ring('time', '%S', 60, color, 0.2, color, 0.8, 694, 241, 16, 5, 0, 360)
+    ring('memperc',  '', 100, color, 0.2, color, 0.8, 246, 340, r-(15*7)+3, 5,  0, 360)
+    ring('swapperc', '', 100, color, 0.2, color, 0.8, 246, 340, r-(14*7)+3, 5, 90, 270)
 
-    ring('cpu', 'cpu0', 100, color, 0.2, color, 0.8, 276, 208, r-(15*7)+3, 5,   0, 360)
-    ring('cpu', 'cpu1', 100, color, 0.2, color, 0.8, 276, 208, r-(14*7)+3, 5,  30,  90)
-    ring('cpu', 'cpu2', 100, color, 0.2, color, 0.8, 276, 208, r-(14*7)+3, 5, 120, 180)
-    ring('cpu', 'cpu3', 100, color, 0.2, color, 0.8, 276, 208, r-(14*7)+3, 5, 210, 270)
-    ring('cpu', 'cpu4', 100, color, 0.2, color, 0.8, 276, 208, r-(14*7)+3, 5, 300, 360)
-    ring('cpu', 'cpu5', 100, color, 0.2, color, 0.8, 276, 208, r-(13*7)+3, 5, 360, 420)
-    ring('cpu', 'cpu6', 100, color, 0.2, color, 0.8, 276, 208, r-(13*7)+3, 5, 450, 510)
-    ring('cpu', 'cpu7', 100, color, 0.2, color, 0.8, 276, 208, r-(13*7)+3, 5, 540, 600)
-    ring('cpu', 'cpu8', 100, color, 0.2, color, 0.8, 276, 208, r-(13*7)+3, 5, 630, 690)
+    ring('battery_percent BAT1', '', 100, color, 0.2, color, 0.8, 246, 452, r-(15*7)+3, 5, 0, 360)
 
-    ring('memperc',  '', 100, color, 0.2, color, 0.8, 276, 366, r-(15*7), 5,  0, 360)
-    ring('swapperc', '', 100, color, 0.2, color, 0.8, 276, 366, r-(14*7), 5, 90, 270)
+    segment(color, 0.2, 246, 452, r-(14*7)+3, 5,   0,  36)
+    segment(color, 0.2, 246, 452, r-(14*7)+3, 5,  72, 108)
+    segment(color, 0.2, 246, 452, r-(14*7)+3, 5, 144, 180)
+    segment(color, 0.2, 246, 452, r-(14*7)+3, 5, 216, 252)
+    segment(color, 0.2, 246, 452, r-(14*7)+3, 5, 216, 252)
+    segment(color, 0.2, 246, 452, r-(14*7)+3, 5, 288, 324)
 
-    ring('battery_percent BAT1', '', 100, color, 0.2, color, 0.8, 276, 470, r-(14*7), 5, 0, 360)
+    ring('fs_used_perc', '/',     100, color, 0.2, color, 0.8, 702, 400, r-(15*7)+3, 5,  0, 360)
+    ring('fs_used_perc', '/boot', 100, color, 0.2, color, 0.8, 702, 400, r-(14*7)+3, 5, 90, 270)
 
-    ring('fs_used_perc', '/',       100, color, 0.2, color, 0.8, 694, 405, r-(15*7), 5,   0, 120)
-    ring('fs_used_perc', '/boot',   100, color, 0.2, color, 0.8, 694, 405, r-(14*7), 5,  60, 180)
-    ring('fs_used_perc', '/home',   100, color, 0.2, color, 0.8, 694, 405, r-(13*7), 5, 120, 240)
-    ring('fs_used_perc', '/usr',    100, color, 0.2, color, 0.8, 694, 405, r-(15*7), 5, 180, 300)
-    ring('fs_used_perc', '/var',    100, color, 0.2, color, 0.8, 694, 405, r-(14*7), 5, 240, 360)
-    ring('fs_used_perc', '/opt',    100, color, 0.2, color, 0.8, 694, 405, r-(13*7), 5, 300, 420)
-    ring('fs_used_perc', '/tmp',    100, color, 0.2, color, 0.8, 694, 505, r-(15*7), 5,   0,  90)
-    ring('fs_used_perc', '/docker', 100, color, 0.2, color, 0.8, 694, 505, r-(14*7), 5,  90, 180)
-    ring('fs_used_perc', '/media',  100, color, 0.2, color, 0.8, 694, 505, r-(15*7), 5, 180, 270)
+    segment(color, 0.2, 246, 540, r-(14*7)+3, 5,   0,  36)
+    segment(color, 0.2, 246, 540, r-(14*7)+3, 5,  72, 108)
+    segment(color, 0.2, 246, 540, r-(14*7)+3, 5, 144, 180)
+    segment(color, 0.2, 246, 540, r-(14*7)+3, 5, 216, 252)
+    segment(color, 0.2, 246, 540, r-(14*7)+3, 5, 216, 252)
+    segment(color, 0.2, 246, 540, r-(14*7)+3, 5, 288, 324)
 
-    if conky_parse('${mpd_status}') == 'Playing'
+    ring('execpi 2 ~/.conky/sensors.core.sh', '', 100, color, 0.2, color, 0.8, 246, 540, r-(15*7)+3, 5, 0, 360)
+
+    round_rect(0, 170, 170, 1, 0, color, 0.5)
+    round_rect(0, 340, 170, 1, 0, color, 0.5)
+    round_rect(0, 454, 170, 1, 0, color, 0.5)
+    round_rect(0, 540, 170, 1, 0, color, 0.5)
+    round_rect(0, 670, 170, 1, 0, color, 0.5)
+
+    round_rect(320, 400, 306, 1, 0, color, 0.5)
+    round_rect(320, 502, 306, 1, 0, color, 0.5)
+    round_rect(320, 714, 306, 1, 0, color, 0.5)
+
+    round_rect(777, 644, 306, 1, 0, color, 0.5)
+    round_rect(777, 771, 306, 1, 0, color, 0.5)
+    round_rect(777, 928, 306, 1, 0, color, 0.5)
+
+    if conky_parse('${mpd_status}') == 'Playing' or conky_parse('${mpd_status}') == 'Paused'
     then
-        draw_cover(390, 990, 60, 60, 4, color)
+        round_rect(868, 655, 1, 80, 0, color, 0.5)
+        draw_cover(820, 695, 80, 80, 2, color)
     end
-  
-    ring('mpd_percent', '', 100, color, 0.2, color, 0.8, 390, 912, r-(14*7), 5, 0, 360)
+
+    ring('execpi 10 ~/.conky/mpd.playlist.percent.sh', '', 100, color, 0.2, color, 0.8, 702, 773, r-(15*7)+3, 5, 0, 360)
 
     cairo_destroy(cr)
 end

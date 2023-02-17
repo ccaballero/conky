@@ -1,0 +1,40 @@
+# vim: ft=conkyrc
+
+conky.config = {
+    background = false,
+    update_interval = 1.0,
+    double_buffer = true,
+    use_xft = true,
+    xftalpha = 0.8,
+    font = 'Futura-Medium:size=9',
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_transparent = true,
+    own_window_type = 'override',
+    gap_x = 10,
+    gap_y = 30,
+    alignment = 'top_right',
+    minimum_width = 900,
+    maximum_width = 900,
+    draw_borders = true,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    default_color = '707070',
+    cpu_avg_samples = 2,
+    net_avg_samples = 2,
+    out_to_console = false,
+    out_to_stderr = false,
+    uppercase = false,
+    use_spacer = 'none',
+    xinerama_head = 2
+}
+
+conky.text = [[
+production
+178.128.190.132
+CPU: 94% ${execbar echo 94}
+MEM: 30% ${execbar echo 30}
+SWAP: 0% ${execbar echo 0}
+]]
+
