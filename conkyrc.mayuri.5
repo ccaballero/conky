@@ -1,0 +1,59 @@
+# vim: ft=conkyrc
+
+conky.config = {
+    background = false,
+    update_interval = 2.0,
+    double_buffer = true,
+    use_xft = true,
+    text_alpha = 1.0,
+    font = 'Futura:size=9',
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_color = '#00000000',
+    own_window_type = 'desktop',
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+    gap_x = 1077,
+    gap_y = 144,
+    alignment = 'top_left',
+    minimum_width = 200,
+    maximum_width = 200,
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    default_color = 'ffffff',
+    cpu_avg_samples = 2,
+    net_avg_samples = 2,
+    out_to_stderr = false,
+    uppercase = false,
+    use_spacer = 'none',
+    lua_load = '~/.conky/widgets.mayuri.5.lua',
+    lua_draw_hook_pre = 'widgets'
+}
+
+conky.text = [[
+${font Futura:size=12}I/O:${font}
+${voffset 4}read: ${diskio_read /dev/nvme0n1}
+${diskiograph_read nvme0n1 40,200}
+${voffset -2}write: ${diskio_write /dev/nvme0n1}
+${diskiograph_write nvme0n1 40,200}
+
+
+${voffset 2}${font Futura:size=12}NETWORK:${font}
+${voffset 4}gw:
+${alignr 0}${voffset -16}${gw_ip}
+${voffset 4}eth0:
+${alignr 0}${voffset -16}${addr eth0}
+${alignr 0}${voffset 4}down: ${downspeed eth0}
+${alignr 0}${downspeedgraph eth0 40,200}
+${alignr 0}${voffset -2}up: ${upspeed eth0}
+${alignr 0}${upspeedgraph eth0 40,200}
+${voffset -2}wlan0:
+${alignr 0}${voffset -16}${addr wlan0}
+${alignr 0}${voffset 4}down: ${downspeed wlan0}
+${alignr 0}${downspeedgraph wlan0 40,200}
+${alignr 0}${voffset -2}up: ${upspeed wlan0}
+${alignr 0}${upspeedgraph wlan0 40,200}
+
+]]
+

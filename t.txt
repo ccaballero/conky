@@ -1,0 +1,26 @@
+${offset 777}${font Futura:size=12}MUSIC:${font}
+${voffset -14}
+${offset 870}${font Noto Sans CJK JP:bold:size=13}$mpd_title${font}
+${offset 870}${voffset -2}${font Noto Sans CJK JP:size=8}$mpd_album ($mpd_date)${font}
+${offset 870}${voffset -2}${font Noto Sans CJK JP:size=8}$mpd_artist${font}
+${offset 870}${voffset 4}${alignr 3}${font Futura:size=7}$mpd_elapsed/$mpd_length${font}
+${offset 870}${voffset -4}${mpd_bar 6,206}
+
+${offset 777}${font Futura:size=12}PLAYLIST:${font}
+${voffset -20}${alignr 4}${font Futura:size=12}${execpi 10 ~/.conky/mpd.playlist.current.sh}${font}
+${voffset 4}${font Noto Sans CJK JP:size=8}${execpi 10 ~/.conky/mpd.playlist.list.sh|sed 's/^/${goto 777}/'}${font}
+
+${if_mpd_playing}
+${if_match "$mpd_status" == "Playing"}
+${image /home/jacobian/.conky/icons/play.png -p 676,747 -s 42x42}
+${endif}${if_match "$mpd_status" == "Paused"}
+${image /home/jacobian/.conky/icons/pause.png -p 676,747 -s 42x42}
+${endif}${else}
+${image /home/jacobian/.conky/icons/stop.png -p 676,747 -s 42x42}
+${endif}
+
+${voffset -114}
+
+${offset 777}${font Futura:size=12}AUDIO:${font}
+${voffset 4}${font Noto Sans CJK JP:size=8}${execpi 10 ~/.conky/audio.pulseaudio.sh|sed 's/^/${goto 777}/'}${font}
+

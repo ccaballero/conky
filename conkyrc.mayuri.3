@@ -1,0 +1,38 @@
+# vim: ft=conkyrc
+
+conky.config = {
+    background = false,
+    update_interval = 2.0,
+    double_buffer = true,
+    use_xft = true,
+    text_alpha = 1.0,
+    font = 'Futura:size=9',
+    own_window = true,
+    own_window_class = 'Conky',
+    own_window_color = '#00000000',
+    own_window_type = 'desktop',
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+    gap_x = 558,
+    gap_y = 144,
+    alignment = 'top_left',
+    minimum_width = 160,
+    maximum_width = 160,
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    default_color = 'ffffff',
+    cpu_avg_samples = 2,
+    net_avg_samples = 2,
+    out_to_stderr = false,
+    uppercase = false,
+    use_spacer = 'none',
+    lua_load = '~/.conky/widgets.mayuri.3.lua',
+    lua_draw_hook_pre = 'widgets'
+}
+
+conky.text = [[
+${font Futura:size=12}PORTS:${font}
+${execpi 10 ~/.conky/ports.sh }
+]]
+
