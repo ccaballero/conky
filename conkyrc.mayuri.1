@@ -28,7 +28,7 @@ conky.config = {
     uppercase = false,
     use_spacer = 'none',
     lua_load = '~/.conky/widgets.mayuri.1.lua',
-    lua_draw_hook_pre = 'widgets'
+    lua_draw_hook_post = 'widgets'
 }
 
 conky.text = [[
@@ -172,4 +172,3 @@ ${alignr 100}${voffset -16}${top_mem pid 8}
 ${alignr 60}${voffset -16}${top_mem cpu 8}
 ${alignr 20}${voffset -16}${top_mem mem 8}
 ]]
-

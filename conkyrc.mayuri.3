@@ -28,11 +28,10 @@ conky.config = {
     uppercase = false,
     use_spacer = 'none',
     lua_load = '~/.conky/widgets.mayuri.3.lua',
-    lua_draw_hook_pre = 'widgets'
+    lua_draw_hook_post = 'widgets'
 }
 
 conky.text = [[
 ${font Futura:size=12}PORTS:${font}
 ${execpi 10 ~/.conky/ports.sh }
 ]]
-

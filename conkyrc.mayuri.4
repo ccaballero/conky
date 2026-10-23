@@ -28,7 +28,7 @@ conky.config = {
     uppercase = false,
     use_spacer = 'none',
     lua_load = '~/.conky/widgets.mayuri.4.lua',
-    lua_draw_hook_pre = 'widgets'
+    lua_draw_hook_post = 'widgets'
 }
 
 conky.text = [[
@@ -59,4 +59,3 @@ ${alignr  20}${voffset -16}${fs_used_perc /mnt/windows}%
 ${voffset 8}${font Futura:size=12}AUDIO:${font}
 ${execpi 2 ~/.conky/audio.sh }
 ]]
-

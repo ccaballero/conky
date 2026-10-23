@@ -28,7 +28,7 @@ conky.config = {
     uppercase = false,
     use_spacer = 'none',
     lua_load = '~/.conky/widgets.mayuri.5.lua',
-    lua_draw_hook_pre = 'widgets'
+    lua_draw_hook_post = 'widgets'
 }
 
 conky.text = [[
@@ -56,4 +56,3 @@ ${alignr 0}${voffset -2}up: ${upspeed wlan0}
 ${alignr 0}${upspeedgraph wlan0 40,200}
 
 ]]
-
